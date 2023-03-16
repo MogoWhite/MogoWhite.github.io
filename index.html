@@ -7,21 +7,6 @@
 {
     visibility: hidden !important;
 }
-body {
-    background-image: url('./index/back.jpg');
-    background-size: cover; /* 背景图片会覆盖整个网页 */
-} 
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9); /* 调整最后一个参数 (0.1) 以改变透明度 */
-    pointer-events: none; /* 防止伪元素阻止页面上的交互 */
-    z-index: -1; /* 将背景置于其他内容之下 */
-}
 </style></head><body id="cate-blog" class="single repv loaded">
     <main class="site-main">
       <div class="col2-wrap-in2 wid1200">
