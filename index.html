@@ -25,6 +25,30 @@
             margin-bottom: 16px;
             box-shadow: 0 2px 6px #f2eeee;
         }
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+
+        .insert-button {
+            background-color: #3A8CE4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+
+        .insert-button:hover {
+            background-color: #2F6FB1;
+        }
         button {
             background-color: #4CAF50;
             border: none;
@@ -48,7 +72,7 @@
 <body>
     <h1>インタラクティブなHTMLエディタ</h1>
     <h2>HTMLコードを入力:</h2>
-    <div>
+    <div class="button-group">
         <button class="insert-button" data-content="<h2>見出し</h2>">見出しを挿入</button>
         <button class="insert-button" data-content="<p>テキスト</p>">テキストを挿入</button>
         <button class="insert-button" data-content='<img src="https://via.placeholder.com/150" alt="サンプル画像">'>画像を挿入</button>
@@ -121,7 +145,7 @@
                 insertAtCursor(htmlCode, content);
             });
         });
-        
+
         document.addEventListener('keydown', (event) => {
         if (event.code === 'KeyE' && event.ctrlKey && event.shiftKey) {
             egg.style.display = egg.style.display === 'none' ? 'block' : 'none';
