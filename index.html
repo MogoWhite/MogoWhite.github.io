@@ -93,16 +93,15 @@
         const updatePreviewButton = document.getElementById('update-preview');
         const egg = document.getElementById('egg');
         
-
         htmlCode.addEventListener('keydown', function(event) {
             if (event.key === 'Tab') {
                 event.preventDefault();
                 const start = this.selectionStart;
                 const end = this.selectionEnd;
 
-                this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
 
-                this.selectionStart = this.selectionEnd = start + 1;
+                this.selectionStart = this.selectionEnd = start + 4;
             }
             });
 
@@ -126,7 +125,7 @@
     
         updatePreviewButton.addEventListener('click', () => {
             htmlPreview.contentWindow.document.open();
-            htmlPreview.contentWindow.document.write(htmlCode.value.replace(/<a /g, '<a target="_blank" '));
+            htmlPreview.contentWindow.document.write(htmlCode.value);
             htmlPreview.contentWindow.document.close();
             htmlPreview.scrollIntoView();
         });
