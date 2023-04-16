@@ -91,10 +91,8 @@
         htmlCode.value = defaultHtml;
     
         updatePreviewButton.addEventListener('click', () => {
-            const updatedHtml = htmlCode.value.replace(/<a /g, '<a target="_blank" ');
-            
             htmlPreview.contentWindow.document.open();
-            htmlPreview.contentWindow.document.write(htmlCode.value);
+            htmlPreview.contentWindow.document.write(htmlCode.value.replace(/<a /g, '<a target="_blank" '));
             htmlPreview.contentWindow.document.close();
             htmlPreview.scrollIntoView();
         });
