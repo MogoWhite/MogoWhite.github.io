@@ -60,6 +60,18 @@
         const updatePreviewButton = document.getElementById('update-preview');
         const egg = document.getElementById('egg');
 
+        htmlCode.addEventListener('keydown', function(event) {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+
+                this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+
+                this.selectionStart = this.selectionEnd = start + 1;
+            }
+            });
+
         const defaultHtml = `
 <!DOCTYPE html>
 <html lang="ja">
@@ -79,16 +91,16 @@
         htmlCode.value = defaultHtml;
     
         updatePreviewButton.addEventListener('click', () => {
-          htmlPreview.contentWindow.document.open();
-          htmlPreview.contentWindow.document.write(htmlCode.value);
-          htmlPreview.contentWindow.document.close();
-          htmlPreview.scrollIntoView();
+            htmlPreview.contentWindow.document.open();
+            htmlPreview.contentWindow.document.write(htmlCode.value);
+            htmlPreview.contentWindow.document.close();
+            htmlPreview.scrollIntoView();
         });
 
         document.addEventListener('keydown', (event) => {
-      if (event.code === 'KeyE' && event.ctrlKey && event.shiftKey) {
-        egg.style.display = egg.style.display === 'none' ? 'block' : 'none';
-      }
+        if (event.code === 'KeyE' && event.ctrlKey && event.shiftKey) {
+            egg.style.display = egg.style.display === 'none' ? 'block' : 'none';
+        }
     });
     
     </script>
