@@ -48,6 +48,15 @@
 <body>
     <h1>インタラクティブなHTMLエディタ</h1>
     <h2>HTMLコードを入力:</h2>
+    <div>
+        <button class="insert-button" data-content="<h2>見出し</h2>">見出しを挿入</button>
+        <button class="insert-button" data-content="<p>テキスト</p>">テキストを挿入</button>
+        <button class="insert-button" data-content='<img src="https://via.placeholder.com/150" alt="サンプル画像">'>画像を挿入</button>
+        <button class="insert-button" data-content='<a href="https://www.example.com">リンク</a>'>リンクを挿入</button>
+        <button class="insert-button" data-content='<ul>
+<li><a href="#id">テキスト</a></li>
+</ul>'>リストを挿入</button>
+    </div>
     <textarea id="html-code" placeholder="ここにHTMLコードを入力"></textarea>
     <button id="update-preview">プレビューを更新</button>
     <img id="egg" src="https://pbs.twimg.com/profile_banners/3402761/1639665119/1500x500" alt="Cute Easter Egg">
@@ -59,6 +68,7 @@
         const htmlPreview = document.getElementById('html-preview');
         const updatePreviewButton = document.getElementById('update-preview');
         const egg = document.getElementById('egg');
+        
 
         htmlCode.addEventListener('keydown', function(event) {
             if (event.key === 'Tab') {
@@ -96,7 +106,22 @@
             htmlPreview.contentWindow.document.close();
             htmlPreview.scrollIntoView();
         });
+        function insertAtCursor(element, content) {
+            const start = element.selectionStart;
+            const end = element.selectionEnd;
+            const value = element.value;
+            element.value = value.slice(0, start) + content + value.slice(end);
+            element.selectionStart = element.selectionEnd = start + content.length;
+        }
 
+        const insertButtons = document.querySelectorAll('.insert-button');
+        insertButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.getAttribute('data-content');
+                insertAtCursor(htmlCode, content);
+            });
+        });
+        
         document.addEventListener('keydown', (event) => {
         if (event.code === 'KeyE' && event.ctrlKey && event.shiftKey) {
             egg.style.display = egg.style.display === 'none' ? 'block' : 'none';
