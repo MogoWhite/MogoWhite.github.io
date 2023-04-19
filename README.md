@@ -1,4 +1,4 @@
-# MogoWhite.github.io
+# インタラクティブなHTMLエディタ
 
 [MogoWhite.github.io](https://MogoWhite.github.io)
 
@@ -15,3 +15,4 @@ todo list
 - [x] ウェブ上でエディタのように入力できる(Tab)
 - [x] ウェブの美化
 - [ ] 簡単なコードヒント(バグ警告と修正提案)
+  - [x] 全角＜＞
