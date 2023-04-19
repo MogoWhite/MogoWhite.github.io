@@ -142,15 +142,18 @@
             const fullWidthLessThan = /＜/g;
             const fullWidthGreaterThan = /＞/g;
             let showAlert = false;
+            let index = -1;
 
-            if (fullWidthLessThan.test(this.value)) {
+            if ((index = this.value.search(fullWidthLessThan)) !== -1) {
                 showAlert = true;
-                this.value = this.value.replace(fullWidthLessThan, '<');
+                htmlCode.focus();
+                htmlCode.setSelectionRange(index, index + 1);
             }
 
-            if (fullWidthGreaterThan.test(this.value)) {
+            if ((index = this.value.search(fullWidthGreaterThan)) !== -1) {
                 showAlert = true;
-                this.value = this.value.replace(fullWidthGreaterThan, '>');
+                htmlCode.focus();
+                htmlCode.setSelectionRange(index, index + 1);
             }
 
             if (showAlert) {
